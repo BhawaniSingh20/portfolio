@@ -1,0 +1,3033 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mr. Bhawani Singh Panwar | BITS Pilani</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #06070d;
+        --bg2: #0a0c16;
+        --bg3: #0f1220;
+        --gold: #c8972a;
+        --gold2: #f0c060;
+        --gold3: #e8a820;
+        --cream: #f5efe0;
+        --white: #ffffff;
+        --muted: #6b7280;
+        --muted2: #4a5168;
+        --text: #d8dce8;
+        --border: rgba(200, 151, 42, 0.15);
+        --border2: rgba(200, 151, 42, 0.08);
+        --glow-gold: 0 0 40px rgba(200, 151, 42, 0.2);
+        --glow-gold2: 0 0 80px rgba(200, 151, 42, 0.1);
+        --card: rgba(255, 255, 255, 0.025);
+        --card2: rgba(200, 151, 42, 0.04);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "Outfit", sans-serif;
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      /* ─── CURSOR ─── */
+      #cur {
+        position: fixed;
+        width: 10px;
+        height: 10px;
+        background: var(--gold2);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        mix-blend-mode: screen;
+        transition: transform 0.15s;
+      }
+      #cur-ring {
+        position: fixed;
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(200, 151, 42, 0.6);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transition: all 0.2s ease;
+      }
+      body:hover #cur {
+        opacity: 1;
+      }
+
+      /* ─── CANVAS ─── */
+      #starfield {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      /* ─── NOISE OVERLAY ─── */
+      .noise {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        opacity: 0.025;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 128px;
+      }
+
+      /* ─── NAV ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.4rem 4rem;
+        background: rgba(6, 7, 13, 0.7);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border2);
+      }
+      .nav-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .nav-logo-ring {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        /* border: 1.5px solid var(--gold); */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        animation: ring-spin 8s linear infinite;
+      }
+      @keyframes ring-spin {
+        to {
+          border-color: var(--gold2);
+          box-shadow: 0 0 12px rgba(200, 151, 42, 0.4);
+        }
+      }
+      .nav-initials {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--gold2);
+      }
+      .nav-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 400;
+        letter-spacing: 1px;
+        color: var(--cream);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        transition: color 0.3s;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: width 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold2);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-resume {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        border: 1px solid var(--border);
+        padding: 0.5rem 1.2rem;
+        border-radius: 2px;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+      .nav-resume:hover {
+        background: rgba(200, 151, 42, 0.1);
+        box-shadow: var(--glow-gold);
+      }
+
+      /* ─── HERO ─── */
+      .hero {
+        min-height: 100vh;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        padding: 9rem 4rem 5rem;
+        overflow: hidden;
+      }
+
+      /* Diagonal golden line */
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 25%;
+        width: 1px;
+        height: 100%;
+        background: linear-gradient(
+          180deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        opacity: 0.2;
+      }
+
+      .hero-content {
+        display: grid;
+        grid-template-columns: 1fr 480px;
+        gap: 5rem;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .hero-line {
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+      }
+      .hero-eyebrow-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 4px;
+        color: var(--gold);
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(3.5rem, 5.5vw, 6.5rem);
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -2px;
+        color: var(--cream);
+      }
+      .hero-title strong {
+        font-weight: 700;
+        display: block;
+      }
+      .hero-title em {
+        color: var(--gold2);
+        font-style: italic;
+      }
+
+      .hero-designation {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        background: var(--card2);
+        border: 1px solid var(--border);
+        padding: 0.6rem 1.2rem;
+        border-radius: 3px;
+        width: fit-content;
+      }
+      .hero-desig-dot {
+        width: 7px;
+        height: 7px;
+        background: var(--gold);
+        border-radius: 50%;
+        animation: breathe 2s ease-in-out infinite;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 rgba(200, 151, 42, 0.5);
+        }
+        50% {
+          box-shadow: 0 0 0 8px rgba(200, 151, 42, 0);
+        }
+      }
+      .hero-desig-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        color: var(--gold2);
+      }
+
+      .hero-desc {
+        font-size: 1.1rem;
+        font-weight: 300;
+        color: var(--muted);
+        line-height: 1.9;
+        max-width: 520px;
+      }
+      .hero-desc strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: 2rem;
+      }
+      .hstat {
+        border-left: 2px solid var(--border);
+        padding-left: 1.2rem;
+      }
+      .hstat-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: var(--gold2);
+        line-height: 1;
+      }
+      .hstat-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+        color: var(--muted);
+        text-transform: uppercase;
+        margin-top: 0.3rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+      .btn-gold {
+        background: linear-gradient(135deg, var(--gold), var(--gold3));
+        color: #06070d;
+        font-family: "Outfit", sans-serif;
+        font-weight: 600;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        padding: 0.9rem 2.2rem;
+        border: none;
+        border-radius: 3px;
+        cursor: none;
+        text-decoration: none;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-gold::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s;
+      }
+      .btn-gold:hover::before {
+        left: 100%;
+      }
+      .btn-gold:hover {
+        box-shadow: 0 8px 40px rgba(200, 151, 42, 0.4);
+        transform: translateY(-2px);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--gold2);
+        font-family: "Outfit", sans-serif;
+        font-weight: 500;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        padding: 0.9rem 2.2rem;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        cursor: none;
+        text-decoration: none;
+        transition: all 0.3s;
+        text-transform: uppercase;
+        display: inline-block;
+      }
+      .btn-outline:hover {
+        background: var(--card2);
+        border-color: var(--gold);
+      }
+
+      /* ─── PHOTO CARD ─── */
+      .photo-zone {
+        position: relative;
+      }
+
+      .photo-frame {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3/4;
+        max-width: 380px;
+        margin: 0 auto;
+        border-radius: 4px;
+        overflow: visible;
+      }
+
+      /* Animated corner brackets */
+      .photo-frame::before,
+      .photo-frame::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-color: var(--gold);
+        border-style: solid;
+        z-index: 3;
+      }
+      .photo-frame::before {
+        top: -8px;
+        left: -8px;
+        border-width: 2px 0 0 2px;
+      }
+      .photo-frame::after {
+        bottom: -8px;
+        right: -8px;
+        border-width: 0 2px 2px 0;
+      }
+      .corner-br::before,
+      .corner-br::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border-color: var(--gold);
+        border-style: solid;
+        z-index: 3;
+      }
+      .corner-br::before {
+        top: -8px;
+        right: -8px;
+        border-width: 2px 2px 0 0;
+      }
+      .corner-br::after {
+        bottom: -8px;
+        left: -8px;
+        border-width: 0 0 2px 2px;
+      }
+
+      .photo-inner {
+        width: 100%;
+        height: 100%;
+        border-radius: 4px;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+        border: 1px solid var(--border);
+        cursor: pointer;
+      }
+
+      .photo-inner::before {
+        content: "";
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        animation: scan 4s ease-in-out infinite;
+        z-index: 5;
+      }
+      @keyframes scan {
+        0% {
+          top: -2%;
+        }
+        100% {
+          top: 102%;
+        }
+      }
+
+      .photo-placeholder {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem;
+        transition: all 0.4s;
+        padding: 2rem;
+      }
+      .photo-placeholder.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .upload-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 2px dashed var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        transition: all 0.3s;
+        animation: float 3s ease-in-out infinite;
+      }
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .photo-inner:hover .upload-icon {
+        border-color: var(--gold);
+        background: rgba(200, 151, 42, 0.08);
+      }
+
+      .upload-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        color: var(--cream);
+        text-align: center;
+      }
+      .upload-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        color: var(--muted);
+        text-align: center;
+      }
+      .upload-btn {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        border: 1px solid var(--border);
+        padding: 0.5rem 1.2rem;
+        border-radius: 2px;
+        transition: all 0.3s;
+        text-transform: uppercase;
+      }
+      .photo-inner:hover .upload-btn {
+        background: rgba(200, 151, 42, 0.1);
+      }
+
+      #photo-input {
+        display: none;
+      }
+      #photo-preview {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        inset: 0;
+        display: none;
+      }
+
+      .photo-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 2rem 1.5rem 1.5rem;
+        background: linear-gradient(0deg, rgba(6, 7, 13, 0.95), transparent);
+        z-index: 4;
+        transform: translateY(0);
+      }
+      .photo-caption-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        color: var(--cream);
+      }
+      .photo-caption-role {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        margin-top: 0.3rem;
+      }
+
+      /* Floating badges around photo */
+      .photo-badge {
+        position: absolute;
+        background: rgba(6, 7, 13, 0.9);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.6rem 1rem;
+        backdrop-filter: blur(10px);
+        z-index: 6;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        animation: float-badge 3s ease-in-out infinite;
+      }
+      .badge-left {
+        left: -90px;
+        top: 30%;
+        animation-delay: 0.5s;
+      }
+      .badge-right {
+        right: -90px;
+        top: 55%;
+        animation-delay: 1s;
+      }
+      @keyframes float-badge {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+      .badge-icon {
+        font-size: 1.2rem;
+      }
+      .badge-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        color: var(--gold);
+        letter-spacing: 1px;
+      }
+      .badge-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--cream);
+      }
+
+      /* ─── DIVIDER ─── */
+      .section-divider {
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        height: 1px;
+      }
+      .section-divider::before {
+        content: "";
+        display: block;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent 5%,
+          var(--border) 30%,
+          var(--gold) 50%,
+          var(--border) 70%,
+          transparent 95%
+        );
+      }
+
+      /* ─── SECTION BASE ─── */
+      .section {
+        position: relative;
+        z-index: 2;
+      }
+      .section-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 7rem 4rem;
+      }
+
+      .section-header {
+        margin-bottom: 4rem;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .section-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 6rem;
+        font-weight: 700;
+        color: rgba(200, 151, 42, 0.06);
+        line-height: 1;
+        position: absolute;
+        top: 7rem;
+        right: 4rem;
+        pointer-events: none;
+        user-select: none;
+      }
+      .section-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 4px;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-bottom: 0.6rem;
+      }
+      .section-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        font-weight: 300;
+        letter-spacing: -1px;
+        color: var(--cream);
+        line-height: 1.1;
+      }
+      .section-title em {
+        color: var(--gold2);
+        font-style: italic;
+      }
+
+      /* ─── ABOUT ─── */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .about-body {
+        font-size: 1.05rem;
+        font-weight: 300;
+        color: var(--muted);
+        line-height: 2;
+      }
+      .about-body p {
+        margin-bottom: 1.4rem;
+      }
+      .about-body strong {
+        color: var(--text);
+        font-weight: 500;
+      }
+
+      .about-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 1.2rem;
+        background: var(--card);
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .detail-row::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: var(--gold);
+        transform: scaleY(0);
+        transition: transform 0.3s;
+      }
+      .detail-row:hover {
+        border-color: var(--border);
+        background: var(--card2);
+      }
+      .detail-row:hover::before {
+        transform: scaleY(1);
+      }
+      .detail-icon {
+        font-size: 1rem;
+        width: 28px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .detail-label {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+        color: var(--muted2);
+        text-transform: uppercase;
+      }
+      .detail-val {
+        font-size: 0.9rem;
+        color: var(--text);
+        font-weight: 400;
+      }
+
+      /* ─── SKILLS ─── */
+      .skills-outer {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+      }
+      .skill-block {
+        background: var(--card);
+        border: 1px solid var(--border2);
+        border-radius: 6px;
+        padding: 2rem;
+        transition: all 0.4s;
+        position: relative;
+        overflow: hidden;
+        group: "";
+      }
+      .skill-block::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(200, 151, 42, 0.04),
+          transparent
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .skill-block:hover {
+        border-color: rgba(200, 151, 42, 0.3);
+        box-shadow: var(--glow-gold2);
+      }
+      .skill-block:hover::after {
+        opacity: 1;
+      }
+
+      .skill-block-head {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 1.4rem;
+      }
+      .skill-ico {
+        width: 36px;
+        height: 36px;
+        border-radius: 6px;
+        background: rgba(200, 151, 42, 0.08);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+      .skill-cat {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+      }
+
+      .skill-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .skill-pill {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        padding: 0.3rem 0.7rem;
+        border-radius: 3px;
+        color: #9ba8c8;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        transition: all 0.25s;
+        cursor: default;
+      }
+      .skill-pill:hover {
+        background: rgba(200, 151, 42, 0.1);
+        border-color: rgba(200, 151, 42, 0.3);
+        color: var(--gold2);
+      }
+      .skill-pill.star {
+        background: rgba(200, 151, 42, 0.07);
+        border-color: rgba(200, 151, 42, 0.2);
+        color: var(--gold2);
+      }
+
+      /* Skill bars */
+      .skill-bars {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .sbar-row {
+      }
+      .sbar-info {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.4rem;
+      }
+      .sbar-name {
+        font-size: 0.8rem;
+        color: var(--text);
+      }
+      .sbar-pct {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        color: var(--gold);
+      }
+      .sbar-track {
+        width: 100%;
+        height: 3px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .sbar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--gold), var(--gold2));
+        border-radius: 2px;
+        width: 0;
+        transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* ─── EXPERIENCE ─── */
+      .exp-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        position: relative;
+      }
+      .exp-list::before {
+        content: "";
+        position: absolute;
+        left: 1.5rem;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: linear-gradient(
+          180deg,
+          var(--gold),
+          rgba(200, 151, 42, 0.1)
+        );
+      }
+
+      .exp-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 2rem;
+        padding: 2.5rem 0 2.5rem 5rem;
+        position: relative;
+        transition: all 0.3s;
+        border-bottom: 1px solid var(--border2);
+      }
+      .exp-card:last-child {
+        border-bottom: none;
+      }
+      .exp-card::before {
+        content: "";
+        position: absolute;
+        left: 1.1rem;
+        top: 2.8rem;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 0 0 15px rgba(200, 151, 42, 0.5);
+        transition: all 0.3s;
+      }
+      .exp-card:hover::before {
+        box-shadow: 0 0 25px rgba(200, 151, 42, 0.8);
+        transform: scale(1.4);
+      }
+
+      .exp-meta {
+        min-width: 160px;
+      }
+      .exp-period {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        white-space: nowrap;
+      }
+      .exp-type {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 1px;
+        color: var(--muted2);
+        margin-top: 0.4rem;
+        text-transform: uppercase;
+      }
+
+      .exp-body {
+      }
+      .exp-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--cream);
+        margin-bottom: 0.3rem;
+      }
+      .exp-org {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        color: var(--gold2);
+        margin-bottom: 0.8rem;
+      }
+      .exp-desc {
+        font-size: 0.9rem;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .exp-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1rem;
+      }
+      .exp-chip {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 1px;
+        padding: 0.25rem 0.6rem;
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        color: var(--muted);
+      }
+
+      /* ─── PROJECTS ─── */
+      .proj-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .proj-card {
+        background: var(--card);
+        border: 1px solid var(--border2);
+        border-radius: 6px;
+        padding: 2.2rem;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s;
+      }
+      .proj-card:hover {
+        border-color: rgba(200, 151, 42, 0.25);
+        transform: translateY(-5px);
+        box-shadow:
+          0 30px 60px rgba(0, 0, 0, 0.4),
+          0 0 40px rgba(200, 151, 42, 0.06);
+      }
+      .proj-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+        transform: scaleX(0);
+        transition: transform 0.4s;
+      }
+      .proj-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .proj-number {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 4rem;
+        font-weight: 700;
+        color: rgba(200, 151, 42, 0.08);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+      }
+      .proj-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--cream);
+        margin-bottom: 0.8rem;
+      }
+      .proj-desc {
+        font-size: 0.88rem;
+        color: var(--muted);
+        line-height: 1.8;
+        margin-bottom: 1.2rem;
+      }
+      .proj-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .proj-tag {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        color: var(--gold);
+        background: rgba(200, 151, 42, 0.06);
+        border: 1px solid rgba(200, 151, 42, 0.15);
+        padding: 0.2rem 0.5rem;
+        border-radius: 2px;
+        letter-spacing: 1px;
+      }
+      .proj-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.4rem;
+      }
+      .plink {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        color: var(--gold2);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(200, 151, 42, 0.3);
+        padding-bottom: 1px;
+        transition: border-color 0.2s;
+      }
+      .plink:hover {
+        border-color: var(--gold2);
+      }
+
+      /* ─── EDUCATION ─── */
+      .edu-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+      .edu-card {
+        background: var(--card);
+        border: 1px solid var(--border2);
+        border-radius: 6px;
+        padding: 2.2rem;
+        transition: all 0.3s;
+        position: relative;
+      }
+      .edu-card:hover {
+        border-color: rgba(200, 151, 42, 0.2);
+      }
+      .edu-card.prime {
+        border-color: rgba(200, 151, 42, 0.2);
+      }
+      .edu-card.prime::after {
+        content: "CURRENT";
+        position: absolute;
+        top: 1.2rem;
+        right: 1.2rem;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.52rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        background: rgba(200, 151, 42, 0.08);
+        border: 1px solid rgba(200, 151, 42, 0.2);
+        padding: 0.2rem 0.6rem;
+        border-radius: 2px;
+      }
+      .edu-year {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        color: var(--gold);
+        margin-bottom: 0.6rem;
+      }
+      .edu-degree {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--cream);
+        margin-bottom: 0.3rem;
+      }
+      .edu-inst {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+        color: var(--gold2);
+        margin-bottom: 0.8rem;
+      }
+      .edu-desc {
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .edu-score {
+        display: inline-block;
+        margin-top: 1rem;
+        background: rgba(200, 151, 42, 0.07);
+        border: 1px solid var(--border);
+        padding: 0.3rem 0.8rem;
+        border-radius: 3px;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.62rem;
+        color: var(--gold2);
+        letter-spacing: 1px;
+      }
+
+      /* ─── CERTIFICATIONS ─── */
+      .cert-masonry {
+        columns: 3;
+        gap: 1.2rem;
+      }
+      .cert-card {
+        break-inside: avoid;
+        margin-bottom: 1.2rem;
+        background: var(--card);
+        border: 1px solid var(--border2);
+        border-radius: 6px;
+        padding: 1.6rem;
+        display: flex;
+        gap: 1rem;
+        transition: all 0.3s;
+      }
+      .cert-card:hover {
+        border-color: rgba(200, 151, 42, 0.2);
+        transform: translateY(-2px);
+      }
+      .cert-badge {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+      .cert-info {
+        flex: 1;
+      }
+      .cert-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--cream);
+        text-decoration: none;
+        margin-bottom: 0.3rem;
+      }
+
+      .cert-name a {
+  color: inherit;       /* Inherits the parent text color */
+  text-decoration: none; /* Removes underline */
+}
+
+.cert-name a:hover {
+  text-decoration: underline; /* Optional: show underline only on hover */
+}
+
+      .cert-by {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 1px;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-bottom: 0.4rem;
+      }
+      .cert-yr {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+
+      /* ─── TESTIMONIAL / CONTACT ─── */
+      .contact-split {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 5rem;
+        align-items: start;
+      }
+      .contact-text {
+      }
+      .contact-desc {
+        font-size: 1.05rem;
+        font-weight: 300;
+        color: var(--muted);
+        line-height: 1.9;
+        margin-bottom: 2.5rem;
+      }
+      .contact-items {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .citem {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.2rem;
+        background: var(--card);
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        text-decoration: none;
+        color: var(--text);
+        transition: all 0.3s;
+      }
+      .citem:hover {
+        border-color: rgba(200, 151, 42, 0.25);
+        background: var(--card2);
+        transform: translateX(6px);
+      }
+      .citem-ico {
+        width: 38px;
+        height: 38px;
+        border-radius: 6px;
+        background: rgba(200, 151, 42, 0.08);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .citem-main {
+        font-size: 0.9rem;
+        color: var(--text);
+      }
+      .citem-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 2px;
+        color: var(--muted2);
+        margin-top: 0.2rem;
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .fgroup {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+      .flabel {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 3px;
+        color: var(--muted2);
+        text-transform: uppercase;
+      }
+      .finput,
+      .ftextarea {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border2);
+        border-radius: 4px;
+        padding: 0.85rem 1rem;
+        color: var(--text);
+        font-family: "Outfit", sans-serif;
+        font-size: 0.95rem;
+        outline: none;
+        transition: border-color 0.3s;
+        resize: none;
+      }
+      .finput:focus,
+      .ftextarea:focus {
+        border-color: rgba(200, 151, 42, 0.4);
+        background: rgba(200, 151, 42, 0.02);
+      }
+      .ftextarea {
+        min-height: 130px;
+      }
+
+      /* ─── BITS WATERMARK ─── */
+      .bits-watermark {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: rgba(6, 7, 13, 0.8);
+
+        backdrop-filter: blur(12px);
+        padding: 0.6rem 1rem;
+        border-radius: 4px;
+      }
+      .bits-wm-logo {
+        width: 30px;
+        height: 30px;
+
+        border-radius: 50%;
+
+        background-image: url("bits-logo.png");
+        background-size: contain; /* keeps aspect ratio */
+        background-position: center; /* centers image */
+        background-repeat: no-repeat;
+      }
+      .bits-wm-text {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 1px;
+        color: #fff;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        position: relative;
+        z-index: 2;
+        border-top: 1px solid var(--border2);
+      }
+      .footer-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2.5rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .footer-l {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        color: var(--muted2);
+      }
+      .footer-r {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 2px;
+        color: var(--muted2);
+      }
+      .footer-r span {
+        color: var(--gold);
+      }
+
+      /* ─── SCROLL ANIMATIONS ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition:
+          opacity 0.9s ease,
+          transform 0.9s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-40px);
+        transition:
+          opacity 0.9s ease,
+          transform 0.9s ease;
+      }
+      .reveal-left.in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(40px);
+        transition:
+          opacity 0.9s ease,
+          transform 0.9s ease;
+      }
+      .reveal-right.in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-scale {
+        opacity: 0;
+        transform: scale(0.95);
+        transition:
+          opacity 0.9s ease,
+          transform 0.9s ease;
+      }
+      .reveal-scale.in {
+        opacity: 1;
+        transform: scale(1);
+      }
+      .delay-1 {
+        transition-delay: 0.1s !important;
+      }
+      .delay-2 {
+        transition-delay: 0.2s !important;
+      }
+      .delay-3 {
+        transition-delay: 0.3s !important;
+      }
+      .delay-4 {
+        transition-delay: 0.4s !important;
+      }
+      .delay-5 {
+        transition-delay: 0.5s !important;
+      }
+
+      /* ─── MOBILE ─── */
+      @media (max-width: 900px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .hero {
+          padding: 7rem 1.5rem 4rem;
+        }
+        .hero-content {
+          grid-template-columns: 1fr;
+        }
+        .photo-zone {
+          display: none;
+        }
+        .section-wrap {
+          padding: 5rem 1.5rem;
+        }
+        .about-grid,
+        .contact-split,
+        .proj-grid,
+        .edu-cards {
+          grid-template-columns: 1fr;
+        }
+        .skills-outer {
+          grid-template-columns: 1fr 1fr;
+        }
+        .cert-masonry {
+          columns: 2;
+        }
+        .exp-card {
+          grid-template-columns: 1fr;
+          padding-left: 3.5rem;
+        }
+        .badge-left,
+        .badge-right {
+          display: none;
+        }
+      }
+
+      /* ─── SCROLLBAR ─── */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 2px;
+      }
+
+      /* Animated gradient mesh BG */
+      .mesh-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(
+            ellipse 600px 400px at 20% 20%,
+            rgba(200, 151, 42, 0.04) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 500px 600px at 80% 70%,
+            rgba(200, 151, 42, 0.03) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 400px 300px at 50% 50%,
+            rgba(200, 151, 42, 0.02) 0%,
+            transparent 70%
+          );
+        animation: mesh-drift 12s ease-in-out infinite alternate;
+      }
+      @keyframes mesh-drift {
+        0% {
+          background-position:
+            0% 0%,
+            100% 100%,
+            50% 50%;
+        }
+        100% {
+          background-position:
+            5% 8%,
+            95% 92%,
+            48% 52%;
+        }
+      }
+
+      /* Progress bar on top */
+      #progress-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), var(--gold2));
+        z-index: 300;
+        width: 0;
+        transition: width 0.1s;
+      }
+
+      /* Typewriter cursor */
+      .tw-cursor {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: var(--gold);
+        margin-left: 3px;
+        animation: blink 1s step-end infinite;
+        vertical-align: text-bottom;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+    <div id="cur"></div>
+    <div id="cur-ring"></div>
+    <canvas id="starfield"></canvas>
+    <div class="noise"></div>
+    <div class="mesh-bg"></div>
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-brand">
+        <div class="nav-logo-ring">
+          <img src="bits-logo.png" alt="Logo" class="nav-logo-img" />
+        </div>
+        <span class="nav-name">Bhawani Singh Panwar</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a
+        href="./CV_Bhawani_Singh_Jan_2026.pdf"
+        class="nav-resume"
+        target="_blank"
+        >RESUME ↗</a
+      >
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-eyebrow reveal">
+            <div class="hero-line"></div>
+            <span class="hero-eyebrow-text"
+              >Software Developer · BITS Pilani</span
+            >
+          </div>
+
+          <h1 class="hero-title reveal delay-1">
+            <span id="greeting">Hello, I'm</span><br />
+            <strong>Bhawani Singh<br /><em>Panwar</em></strong>
+          </h1>
+
+          <div class="hero-designation reveal delay-2">
+            <div class="hero-desig-dot"></div>
+            <span class="hero-desig-text" id="typewriter-role"
+              >Senior Technician · IT Services Unit</span
+            >
+          </div>
+
+          <p class="hero-desc reveal delay-3">
+            Software Developer and Designer at
+            <strong>BITS Pilani</strong> specializing in full-stack engineering,
+            database administrator and website content author. Bridging academic
+            rigor with real-world impact through robust server orchestration,
+            secure application deployment, and scalable backend architecture
+            since 2021.
+          </p>
+
+          <div class="hero-stats reveal delay-4">
+            <div class="hstat">
+              <div class="hstat-num" data-target="4.5">0</div>
+              <div class="hstat-label">Years of Experience</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-num" data-target="50">0</div>
+              <div class="hstat-label">Major Projects Handled</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-num" data-target="250">0</div>
+              <div class="hstat-label">Websites Developed</div>
+            </div>
+          </div>
+
+          <div class="hero-actions reveal delay-5">
+            <a href="#projects" class="btn-gold">Explore My Work</a>
+            <a href="#contact" class="btn-outline">Get In Touch</a>
+          </div>
+        </div>
+
+        <!-- PHOTO ZONE -->
+        <div class="photo-zone reveal-right">
+          <div class="photo-frame">
+            <div class="corner-br"></div>
+            <div
+              class="photo-inner"
+              id="photo-drop"
+              onclick="document.getElementById('photo-input').click()"
+            >
+              <div class="photo-placeholder" id="photo-placeholder">
+                <div class="upload-icon">📸</div>
+                <div class="upload-title">Your Photo Here</div>
+                <div class="upload-sub">CLICK OR DRAG & DROP</div>
+                <div
+                  class="upload-sub"
+                  style="margin-top: -0.5rem; opacity: 0.6"
+                >
+                  JPG · PNG · WEBP · MAX 10MB
+                </div>
+                <div class="upload-btn">UPLOAD PHOTO</div>
+              </div>
+              <img id="photo-preview" alt="Profile Photo" />
+              <div class="photo-caption">
+                <div class="photo-caption-name">Bhawani Singh Panwar</div>
+                <div class="photo-caption-role">
+                  Senior Technician · BITS PILANI
+                </div>
+              </div>
+            </div>
+            <input type="file" id="photo-input" accept="image/*" />
+
+            <!-- Floating badges -->
+            <div class="photo-badge badge-left">
+              <div class="badge-icon">🎓</div>
+              <div>
+                <div class="badge-num">M.Tech</div>
+                <div class="badge-text">BTU</div>
+              </div>
+            </div>
+            <div class="photo-badge badge-right">
+              <div class="badge-icon">⭐</div>
+              <div>
+                <div class="badge-num">9.78</div>
+                <div class="badge-text">CGPA</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="section-wrap">
+        <div class="section-num">01</div>
+        <div class="section-header">
+          <div>
+            <div class="section-tag">About Me</div>
+            <h2 class="section-title reveal">
+              The Person <em>Behind the Work</em>
+            </h2>
+          </div>
+        </div>
+        <div class="about-grid">
+          <div class="about-body reveal-left">
+            <p>
+              Currently serving as a <strong>Senior Technician</strong> in IT
+              Services Unit at <strong>BITS Pilani</strong>, I have been
+              actively involved in designing, developing, deploying, and
+              maintaining complex institutional web systems and digital
+              platforms. With over nine years of experience in academia and
+              industry-facing research, I bridge the gap between theoretical
+              computer science and practical engineering.
+            </p>
+            <p>
+              My role extends beyond development to include
+              <strong
+                >infrastructure management, LMS integrations, and large-scale
+                website handling</strong
+              >, ensuring seamless performance for thousands of users.
+            </p>
+            <p>
+              I regularly collaborate with faculty, administrative departments,
+              and technical teams to translate business requirements into
+              effective digital solutions. My experience working in Agile
+              environments has strengthened my ability to
+              <strong
+                >lead discussions, coordinate design reviews, and ensure
+                high-quality delivery within deadlines.</strong
+              >
+            </p>
+          </div>
+          <div class="about-details reveal-right">
+            <div class="detail-row">
+              <div class="detail-icon">👤</div>
+              <div>
+                <div class="detail-label">Full Name</div>
+                <div class="detail-val">Bhawani Singh Panwar</div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-icon">🏛️</div>
+              <div>
+                <div class="detail-label">Designation</div>
+                <div class="detail-val">Senior Technician</div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-icon">🔬</div>
+              <div>
+                <div class="detail-label">Department</div>
+                <div class="detail-val">IT Services Unit</div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-icon">🏫</div>
+              <div>
+                <div class="detail-label">Institution</div>
+                <div class="detail-val">BITS Pilani, Pilani Campus</div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-icon">📍</div>
+              <div>
+                <div class="detail-label">Location</div>
+                <div class="detail-val">Pilani, Rajasthan — 333031</div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-icon">📧</div>
+              <div>
+                <div class="detail-label">Email</div>
+                <div class="detail-val">
+                  bhawani.panwar@pilani.bits-pilani.ac.in
+                </div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-icon">📱</div>
+              <div>
+                <div class="detail-label">Phone</div>
+                <div class="detail-val">+91 94606 33960</div>
+              </div>
+            </div>
+            <div class="detail-row">
+              <div class="detail-icon">🌐</div>
+              <div>
+                <div class="detail-label">BITS Profile</div>
+                <div class="detail-val">bits-pilani.ac.in/csis/rajesh</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <div class="section-wrap">
+        <div class="section-num">02</div>
+        <div class="section-header">
+          <div>
+            <div class="section-tag">Technical Expertise</div>
+            <h2 class="section-title reveal">
+              Skills &amp; <em>Proficiencies</em>
+            </h2>
+          </div>
+        </div>
+        <div class="skills-outer">
+          <div class="skill-block reveal delay-1">
+            <div class="skill-block-head">
+              <div class="skill-ico">💻</div>
+              <div class="skill-cat">LANGUAGES</div>
+            </div>
+            <div class="skill-bars">
+              <div class="sbar-row">
+                <div class="sbar-info">
+                  <span class="sbar-name">ASP.NET/C#</span
+                  ><span class="sbar-pct">95%</span>
+                </div>
+                <div class="sbar-track">
+                  <div class="sbar-fill" data-w="95"></div>
+                </div>
+              </div>
+              <div class="sbar-row">
+                <div class="sbar-info">
+                  <span class="sbar-name">JavaScript </span
+                  ><span class="sbar-pct">88%</span>
+                </div>
+                <div class="sbar-track">
+                  <div class="sbar-fill" data-w="88"></div>
+                </div>
+              </div>
+              <div class="sbar-row">
+                <div class="sbar-info">
+                  <span class="sbar-name">C++ / Java</span
+                  ><span class="sbar-pct">82%</span>
+                </div>
+                <div class="sbar-track">
+                  <div class="sbar-fill" data-w="82"></div>
+                </div>
+              </div>
+              <div class="sbar-row">
+                <div class="sbar-info">
+                  <span class="sbar-name">SQL / NoSQL</span
+                  ><span class="sbar-pct">90%</span>
+                </div>
+                <div class="sbar-track">
+                  <div class="sbar-fill" data-w="90"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-block reveal delay-2">
+            <div class="skill-block-head">
+              <div class="skill-ico">⚛️</div>
+              <div class="skill-cat">FRONTEND</div>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill star">React.js</span>
+              <span class="skill-pill">Tailwind CSS</span>
+              <span class="skill-pill">Boostrap 5.x</span>
+              <span class="skill-pill">HTML</span>
+            </div>
+          </div>
+
+          <div class="skill-block reveal delay-3">
+            <div class="skill-block-head">
+              <div class="skill-ico">🖥️</div>
+              <div class="skill-cat">BACKEND</div>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill star">C#</span>
+              <span class="skill-pill star">Node.js</span>
+              <span class="skill-pill star">Spring Boot</span>
+              <span class="skill-pill">PHP</span>
+              <span class="skill-pill">REST APIs</span>
+            </div>
+          </div>
+
+          <div class="skill-block reveal delay-1">
+            <div class="skill-block-head">
+              <div class="skill-ico">☁️</div>
+              <div class="skill-cat">CLOUD & DEVOPS</div>
+            </div>
+            <div class="skill-bars">
+              <div class="sbar-row">
+                <div class="sbar-info">
+                  <span class="sbar-name"
+                    >Google Cloud (IAM & Security Tools/IAM & Security
+                    Tools)</span
+                  ><span class="sbar-pct">87%</span>
+                </div>
+                <div class="sbar-track">
+                  <div class="sbar-fill" data-w="87"></div>
+                </div>
+              </div>
+              <div class="sbar-row">
+                <div class="sbar-info">
+                  <span class="sbar-name">Docker / Kubernetes</span
+                  ><span class="sbar-pct">50%</span>
+                </div>
+                <div class="sbar-track">
+                  <div class="sbar-fill" data-w="50"></div>
+                </div>
+              </div>
+              <div class="sbar-row">
+                <div class="sbar-info">
+                  <span class="sbar-name">GitHub Actions</span
+                  ><span class="sbar-pct">70%</span>
+                </div>
+                <div class="sbar-track">
+                  <div class="sbar-fill" data-w="70"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="skill-block reveal delay-2">
+            <div class="skill-block-head">
+              <div class="skill-ico">🤖</div>
+              <div class="skill-cat">AI / ML / RESEARCH</div>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill star">Ollama</span>
+              <span class="skill-pill star">Agentic AI</span>
+              <span class="skill-pill">LLMs </span>
+            </div>
+          </div>
+
+          <div class="skill-block reveal delay-3">
+            <div class="skill-block-head">
+              <div class="skill-ico">🗄️</div>
+              <div class="skill-cat">DATABASES & TOOLS</div>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill star">MS SQL</span>
+              <span class="skill-pill star">MongoDB</span>
+              <span class="skill-pill star">My Sql</span>
+
+              <span class="skill-pill">Linux</span>
+              <span class="skill-pill">PostgreSQL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+      <div class="section-wrap">
+        <div class="section-num">03</div>
+        <div class="section-header">
+          <div>
+            <div class="section-tag">Work Experience</div>
+            <h2 class="section-title reveal">
+              Where I've <em>Contributed</em>
+            </h2>
+          </div>
+        </div>
+        <div class="exp-list">
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <div class="exp-period">2020 — PRESENT</div>
+              <div class="exp-type">Full-Time · Developer</div>
+            </div>
+            <div class="exp-body">
+              <div class="exp-title">Senior Technician</div>
+              <div class="exp-org">
+                BITS PILANI · PILANI CAMPUS · IT Services Unit
+              </div>
+              <div class="exp-desc">
+                Since kicked off my journey in 2021 at BITS as a Senior
+                Technician in the Software Development & Educational Technology
+                Unit, where I contributed to several major projects. Since then,
+                I’ve specialized in building and managing Learning Management
+                Systems (LMS), I actively contribute to maintaining and
+                enhancing the institute’s official website using Adobe
+                Word-Press (B-Builder), ensuring timely updates, content
+                accuracy, and a seamless user experience.I am responsible for
+                end‑to‑end application development, including designing,
+                developing, testing, and deploying scalable web-based solutions
+                tailored to institutional needs.
+              </div>
+              <div class="exp-chips">
+                <span class="exp-chip">Development</span
+                ><span class="exp-chip">Designing</span
+                ><span class="exp-chip">Server Management</span
+                ><span class="exp-chip">Deployment</span
+                ><span class="exp-chip">Content Author</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <div class="exp-period">2016 — 2020</div>
+              <div class="exp-type">Full-Time · Developer</div>
+            </div>
+            <div class="exp-body">
+              <div class="exp-title">Software Executive</div>
+              <div class="exp-org">
+                MANIPAL UNIVERSITY · SCHOOL OF COMPUTER AND INFORMATION
+                TECHNOLOGY · JAIPUR
+              </div>
+              <div class="exp-desc">
+                I am responsible for end‑to‑end application development,
+                including designing, developing, testing, and deploying scalable
+                web-based solutions tailored to institutional needs.I actively
+                contribute to maintaining and enhancing the institute’s official
+                website using Adobe Experience Manager (AEM), ensuring timely
+                updates, content accuracy, and a seamless user experience.My
+                responsibilities also involve analyzing complex technical
+                requirements, solving critical system issues, and designing
+                efficient database structures to support robust application
+                performance.
+              </div>
+              <div class="exp-chips">
+                <span class="exp-chip">Development</span>
+                <span class="exp-chip">Content Author</span
+                ><span class="exp-chip">Designing</span
+                ><span class="exp-chip">Problem Solving</span
+                ><span class="exp-chip">IT Operations</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="exp-card reveal">
+            <div class="exp-meta">
+              <div class="exp-period">2013-2014</div>
+              <div class="exp-type">Junior Developer</div>
+            </div>
+            <div class="exp-body">
+              <div class="exp-title">.NET Trainee</div>
+              <div class="exp-org">VIVA CITY INFOTECH · ASP.NET · JAIPUR</div>
+              <div class="exp-desc">
+                Joined VivaCity Infotech Pvt Ltd. as .NET Trainee learned basic
+                level ASP.NET, Jquery, JavaScript web-technology Also get into
+                the understanding of Problem Solving and Database Designing.
+              </div>
+              <div class="exp-chips">
+                <span class="exp-chip">Development</span
+                ><span class="exp-chip">Designing</span
+                ><span class="exp-chip">Tetsing</span
+                ><span class="exp-chip">Database Design</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div class="exp-card reveal">
+            <div class="exp-meta">
+              <div class="exp-period">2013 — 2015</div>
+              <div class="exp-type">Industry · SDE-II</div>
+            </div>
+            <div class="exp-body">
+              <div class="exp-title">Senior Software Development Engineer</div>
+              <div class="exp-org">SAMSUNG R&amp;D INSTITUTE · BENGALURU</div>
+              <div class="exp-desc">
+                Worked on the Tizen OS networking stack. Developed a low-latency
+                peer-to-peer discovery protocol adopted across 15M+ Samsung IoT
+                devices. Filed 2 patents. Led a 6-member cross-functional team
+                across India and South Korea.
+              </div>
+              <div class="exp-chips">
+                <span class="exp-chip">C++</span
+                ><span class="exp-chip">Tizen OS</span
+                ><span class="exp-chip">IoT</span
+                ><span class="exp-chip">Networking</span
+                ><span class="exp-chip">Patents</span>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="section-wrap">
+        <div class="section-num">04</div>
+        <div class="section-header">
+          <div>
+            <div class="section-tag">Notable Projects</div>
+            <h2 class="section-title reveal">Things I've <em>Built</em></h2>
+          </div>
+        </div>
+        <div class="proj-grid">
+          <div class="proj-card reveal delay-1">
+            <div class="proj-number">01</div>
+            <div class="proj-title">
+              BITS (Visiting Research Internship Programme)— VrSi 2026
+            </div>
+            <div class="proj-desc">
+              Developed a comprehensive portal to streamline the registration
+              and application process for graduating students aspiring to join
+              research internships at BITS Pilani. The system enables students
+              to: - Register with their academic and personal details - Explore
+              and apply for research projects submitted by faculty members
+              across different departments - Set preferences for projects and
+              submit all required documents for evaluation The portal also
+              incorporates (RBAC) modules for faculty and administrators,
+              allowing them to monitor applications, filter candidates, and
+              manage the selection process efficiently. This initiative
+              attracted approximately 5,000 applications from across India,
+              highlighting its impact and reach in connecting talented students
+              with cutting-edge research opportunities.
+            </div>
+            <div class="proj-tags">
+              <span class="proj-tag">ASP.NET</span
+              ><span class="proj-tag">C#</span
+              ><span class="proj-tag">Javascript</span
+              ><span class="proj-tag">Jquery</span
+              ><span class="proj-tag">MS SQL</span
+              ><span class="proj-tag">IIS Server</span>
+            </div>
+            <div class="proj-links">
+              <a
+                href="https://web.bits-pilani.ac.in/summer-internship-portal/FacultyResearch.aspx"
+                class="plink"
+                target="_blank"
+                >Live Portal ↗</a
+              ><a href="#" class="plink">GitHub ↗</a>
+            </div>
+          </div>
+
+          <div class="proj-card reveal delay-2">
+            <div class="proj-number">02</div>
+            <div class="proj-title">
+              BITS Fellowship Portal - (AGSRD Portal)
+            </div>
+            <div class="proj-desc">
+              We designed and implemented a full-fledged portal to facilitate
+              applications for fellowship and scholarship opportunities within
+              the AGSRD department. The system allows students to: - Submit
+              detailed research information, including publication and journal
+              records, under their respective supervisor and co-supervisor
+              projects - Apply seamlessly for fellowship/scholarship
+              consideration with all required documentation To ensure efficient
+              management, the portal integrates (RBAC) modules for DRC members,
+              supervisors, and administrators. These modules enable stakeholders
+              to monitor applications, filter candidates, and provide approvals
+              or remarks based on applicant merit and eligibility. This solution
+              streamlines the end-to-end process, ensuring transparency,
+              accountability, and ease of use for both applicants and
+              evaluators.
+            </div>
+            <div class="proj-tags">
+              <span class="proj-tag">ASP.NET</span
+              ><span class="proj-tag">C#</span><span class="proj-tag">AJAX</span
+              ><span class="proj-tag">Javascript</span
+              ><span class="proj-tag">MS SQL</span
+              ><span class="proj-tag">IIS Server</span>
+              <span class="proj-tag">G Auth</span>
+            </div>
+            <div class="proj-links">
+              <a
+                href="https://web.bits-pilani.ac.in/agsrd_fellowship/Default.aspx"
+                class="plink"
+                target="_blank"
+                >Live ↗</a
+              ><a href="#" class="plink">GitHub↗</a>
+            </div>
+          </div>
+
+          <div class="proj-card reveal delay-3">
+            <div class="proj-number">03</div>
+            <div class="proj-title">
+              BITS Academic Counciling & Mentorship Programme — ACC
+            </div>
+            <div class="proj-desc">
+              We developed a dedicated portal to support the mentorship program
+              for all first-degree students. The system enables administrators
+              to: - Upload and manage student data, assigning each student to a
+              respective mentor - Allow mentors to mark attendance, raise
+              concerns about student well-being, and recommend supportive
+              measures - Facilitate mentors in scheduling one-on-one meetings
+              with students to provide guidance, moral support, and address
+              challenges such as stress or academic pressure - Enable
+              administrators to monitor overall progress, manage records, and
+              archive data for graduating batches while preparing fresh uploads
+              for new students This solution fosters a structured mentorship
+              framework, ensuring that students receive timely support and
+              guidance while administrators maintain oversight of the program’s
+              effectiveness
+            </div>
+            <div class="proj-tags">
+              <span class="proj-tag">ASP.NET</span
+              ><span class="proj-tag">C#</span><span class="proj-tag">AJAX</span
+              ><span class="proj-tag">Javascript</span
+              ><span class="proj-tag">MS SQL</span
+              ><span class="proj-tag">IIS Server</span>
+              <span class="proj-tag">G Auth</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="plink">GitHub ↗</a
+              ><a
+                href="https://discovery.bits-pilani.ac.in/ACC/Faculty/faculty-login.aspx"
+                class="plink"
+                target="_blank"
+                >Live ↗</a
+              >
+            </div>
+          </div>
+
+          <div class="proj-card reveal delay-4">
+            <div class="proj-number">04</div>
+            <div class="proj-title">
+              BITS Ph.D. Thesis Submission & Evaluation Portal — (General
+              Administration Unit Portal)
+            </div>
+            <div class="proj-desc">
+              A centralized portal was developed with a common login system for
+              DRC, Associate Dean, Dean, and Registry to streamline the Ph.D.
+              thesis submission and evaluation process. Key Features: - DRC
+              Module: - Thesis registration with required documents (consent
+              letters, examiner panel, fee receipt, thesis softcopy, synopsis,
+              grade sheet, forms, and plagiarism report). - Ability to recommend
+              examiners, preview submissions, and make edits before forwarding
+              for approval. - Associate Dean (AUGSD): - Review and approve
+              submitted theses. - Track documents and remarks before forwarding
+              to the Dean.- Dean (AUGSD): - Verify examiner details, review CVs,
+              and finalize examiner selection. - Forward approved proposals to
+              the Registry for further action. - Registry: - Manage examiner
+              communication via encrypted links. - Track examiner responses,
+              evaluation reports, and send automated reminders if reports are
+              delayed. - Maintain secure records linked to each thesis ID. This
+              portal ensures transparency, efficiency, and accountability across
+              all stakeholders, while automating communication and evaluation
+              workflows for Ph.D. submissions.
+            </div>
+            <div class="proj-tags">
+              <span class="proj-tag">ASP.NET</span
+              ><span class="proj-tag">C#</span
+              ><span class="proj-tag">Javascript</span
+              ><span class="proj-tag">MS SQL</span
+              ><span class="proj-tag">IIS Server</span>
+              <span class="proj-tag">G Auth</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="plink">GitHub ↗</a
+              ><a
+                href="https://icms.bits-pilani.ac.in/PhDPortal/login-bits.aspx"
+                class="plink"
+                target="_blank"
+                >Live ↗</a
+              >
+            </div>
+          </div>
+
+          <div class="proj-card reveal delay-1">
+            <div class="proj-number">05</div>
+            <div class="proj-title">
+              BITS Labs Booking Facility Portal — (LBF Portal)
+            </div>
+            <div class="proj-desc">
+              A portal was developed to streamline laboratory booking for
+              faculty members using their official BITS email ID. Key Features:
+              - Faculty Login & Dashboard: Secure login with faculty credentials
+              to view available labs, rooms, and pre-installed software. - Slot
+              Requests: Faculty can submit new booking requests with date, time,
+              purpose, and required software. - Request Tracking: View submitted
+              requests, check booking status, and monitor approvals from
+              administrators. - Cancellation: Option to cancel previously booked
+              slots, automatically updating the system and notifying IPC
+              Labs.This solution ensures efficient scheduling, transparent
+              communication, and optimal utilization of laboratory resources
+              across departments.
+            </div>
+            <div class="proj-tags">
+              <span class="proj-tag">ASP.NET</span
+              ><span class="proj-tag">C#</span
+              ><span class="proj-tag">Javascript</span
+              ><span class="proj-tag">MS SQL</span
+              ><span class="proj-tag">IIS Server</span>
+              <span class="proj-tag">G Auth</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="plink">GitHub ↗</a
+              ><a
+                href="https://icms.bits-pilani.ac.in/IPCLabsBookingFacility/index.aspx"
+                target="_blank"
+                class="plink"
+                >Live ↗</a
+              >
+            </div>
+          </div>
+
+          <div class="proj-card reveal delay-2">
+            <div class="proj-number">06</div>
+            <div class="proj-title">
+              Forti MemberShip Web Admin Portal — Spring Architect(MVC)
+            </div>
+            <div class="proj-desc">
+              We designed and developed Forti Membership program provides a web based solution 
+for each FORTI member to  facilitate them with mobile 
+accessibility feature to view and search the existing 
+member on their mobile screen while using app. 
+Technologies used to create this application is J2EE for 
+Admin Panel and Web Services along with android to 
+create mobile application. Forti is an android application 
+solution which is been developed to bring all its 
+members under a single mobile app
+            <div class="proj-tags">
+              <span class="proj-tag">Java Spring MVC 3.0</span
+              ><span class="proj-tag">J2EE</span
+              ><span class="proj-tag">Hibernate</span
+              ><span class="proj-tag">mysql</span
+              ><span class="proj-tag">Apache Tomcat</span>
+            </div>
+            <div class="proj-links">
+              <a href="#" class="plink">GitHub ↗</a
+              ><a href="#" class="plink">Demo ↗</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <div class="section-wrap">
+        <div class="section-num">05</div>
+        <div class="section-header">
+          <div>
+            <div class="section-tag">Academic Qualifications</div>
+            <h2 class="section-title reveal">
+              Educational <em>Background</em>
+            </h2>
+          </div>
+        </div>
+        <div class="edu-cards">
+          <div class="edu-card prime reveal delay-1">
+            <div class="edu-year">2020 — 2022(Pass in 2024)</div>
+            <div class="edu-degree">M.Tech (CSE)</div>
+            <div class="edu-inst">🏛️ Bikaner University Technology, Rajasthan</div>
+            <div class="edu-desc">
+              Thesis: "Kernel Based fuzzy k-means clustering segmentation and CNN Classification Based brain tumor detection."
+            </div>
+            <div class="edu-score">CGPA: 9.78/ 10</div>
+          </div>
+          <div class="edu-card reveal delay-2">
+            <div class="edu-year">2015 — 2016</div>
+            <div class="edu-degree">PG Diploma in Advance Software Development & Methodologies — DASDM</div>
+            <div class="edu-inst">🏫 CDAC ACTS, Pune</div>
+            <div class="edu-desc">
+              Specialization in Java, Spring MVC, Linux Adminstration & Web Technologies.
+              Designed and Developed the Task Management System with user AUthentication and Authorization.
+              
+            </div>
+            <div class="edu-score">CGPA: 8.24 / 10</div>
+          </div>
+          <div class="edu-card reveal delay-3">
+            <div class="edu-year">2009 — 2013</div>
+            <div class="edu-degree">
+              B.Tech. — Computer Science &amp; Engineering
+            </div>
+            <div class="edu-inst">
+              🏫 Rajasthan Technical Univeristy, Kota
+            </div>
+            <div class="edu-desc">
+              Foundation in algorithms, networks, and systems programming.
+              Internship at CoreInfo Com Pvt. Ltd., Jaipur and Indian Railway Networking System, Jaipur. Led the onsite zonal competition on Cyber Security and Ethical Hacking represented the
+              institute at Chakravyuh 2011 at Delhi Technological University conducted by IIT Kanpur.
+            </div>
+            <div class="edu-score">CGPA: 8.7 / 10</div>
+          </div>
+          <div
+            class="edu-card reveal delay-4"
+            style="
+              background: rgba(200, 151, 42, 0.03);
+              border-color: rgba(200, 151, 42, 0.15);
+            "
+          >
+            <div class="edu-year">AWARDS & RECOGNITION</div>
+            <div class="edu-degree">Honors & Milestones</div>
+            <div class="edu-desc" style="margin-top: 0.8rem">
+              🥇 &nbsp;Qualified for on site zoanl round of CHAKRAVYUH-IT Security EVENT at DTU, Delhi 2011<br />
+             🌍  &nbsp;Participated in DREGE N DROP robotics event at Techniche 2011 at IIT Guwahati<br />
+               🏆 &nbsp;3rd Rank of SOFTWAR event in techfest SARVATRA'11 held at <br />
+              
+             📰  &nbsp;Participated in Workshop on Network Security organised by Computer Society of India, Jaipur Chapter.<br/>
+             📖 &nbsp; Participated in practical traning in Automatic Electronic Exchange, Railnet, Passenger Reservaiton System and Optical Fibre Communication at NORTH WEST RAILWAY(NWR). 
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CERTIFICATIONS -->
+    <section class="section" id="certifications">
+      <div class="section-wrap">
+        <div class="section-num">06</div>
+        <div class="section-header">
+          <div>
+            <div class="section-tag">Credentials</div>
+            <h2 class="section-title reveal">
+              Certifications &amp; <em>Credentials</em>
+            </h2>
+          </div>
+        </div>
+        <div class="cert-masonry reveal">
+          <div class="cert-card">
+            <div class="cert-badge" style="background: rgba(255, 153, 0, 0.1)">
+             <img src="google.png" alt="Google Logo" width="40" height="40">
+
+            </div>
+            <div class="cert-info">
+              <div class="cert-name">
+                  <a href="https://www.credly.com/badges/17a5a980-a937-4968-a402-e82832fe0c14/linked_in_profile" target="_blank">
+
+Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge — Professional</a>
+              </div>
+              <div class="cert-by">Google</div>
+              <div class="cert-yr">Issued Feb 2026</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-badge" style="background: rgba(0, 114, 255, 0.1)">
+             <img src="google.png" alt="Google Logo" width="40" height="40">
+            </div>
+            <div class="cert-info">
+              <div class="cert-name">  <a href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/20108558?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank">Google Cloud Gemini For Data Scientists And Analysts</a></div>
+              <div class="cert-by">Google Cloud Training Online</div>
+              <div class="cert-yr">Issued Nov 2025 · Credential ID 20108558</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div
+              class="cert-badge"
+              style="background: rgba(200, 151, 42, 0.08)"
+            >
+              <img src="google.png" alt="Google Logo" width="40" height="40">
+            </div>
+            <div class="cert-info">
+              <div class="cert-name"> <a href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/20078727?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank">
+                Google Cloud Gemini For Application Developer</a>
+              </div>
+              <div class="cert-by">Google</div>
+              <div class="cert-yr">Issued Nov 2025 · Credential ID 20078727</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-badge" style="background: rgba(123, 47, 255, 0.1)">
+          <img src="google.png" alt="Google Logo" width="40" height="40">
+            </div>
+            <div class="cert-info">
+              <div class="cert-name"><a href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/15201468?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank">
+                Prompt Design in Vertex AI</a>
+              </div>
+              <div class="cert-by">Linux Foundation / CNCF</div>
+              <div class="cert-yr">Issued Apr 2025</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-badge" style="background: rgba(0, 200, 83, 0.1)">
+             <img src="google.png" alt="Google Logo" width="40" height="40">
+            </div>
+            <div class="cert-info">
+              <div class="cert-name"><a href="https://www.credly.com/badges/21515f8c-46c6-4232-9be1-74fa79f8845e/linked_in_profile" target="_blank">Cloud Technical Series: ADK Builder's Badge</a></div>
+              <div class="cert-by">Google Cloud Skills Boost</div>
+              <div class="cert-yr">Issued Oct 2025</div>
+            </div>
+          </div>
+          <div class="cert-card">
+            <div class="cert-badge" style="background: rgba(255, 50, 50, 0.1)">
+             <img src="oracle_logo.jpg" alt="Google Logo" width="40" height="40">
+            </div>
+            <div class="cert-info">
+              <div class="cert-name"><a href="https://www.credly.com/badges/21515f8c-46c6-4232-9be1-74fa79f8845e/linked_in_profile" target="_blank">Oracle cloud essentials</a></div>
+              <div class="cert-by">Oracle</div>
+              <div class="cert-yr">Issued Jan 2025</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="section-wrap">
+        <div class="section-num">07</div>
+        <div class="section-header">
+          <div>
+            <div class="section-tag">Get In Touch</div>
+            <h2 class="section-title reveal">Let's <em>Connect</em></h2>
+          </div>
+        </div>
+        <div class="contact-split">
+          <div class="contact-text reveal-left">
+            <p class="contact-desc">
+              Whether you're a developer, recruiter, student, or fellow
+              collabrator — I'm always open to meaningful conversations,
+              development and consulting opportunities.
+            </p>
+            <div class="contact-items">
+              <a href="mailto:rajesh@pilani.bits-pilani.ac.in" class="citem">
+                <div class="citem-ico">📧</div>
+                <div>
+                  <div class="citem-main">
+                    bhawani.panwar@pilani.bits-pilani.ac.in
+                  </div>
+                  <div class="citem-sub">INSTITUTIONAL EMAIL · PREFERRED</div>
+                </div>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/bhawani-singh-8aa14275"
+                target="_blank"
+                class="citem"
+              >
+                <div class="citem-ico">💼</div>
+                <div>
+                  <div class="citem-main">
+                    www.linkedin.com/in/bhawani-singh-panwar-8aa14275
+                  </div>
+                  <div class="citem-sub">LINKEDIN PROFILE</div>
+                </div>
+              </a>
+              <a href="https://github.com/bhawanisingh20" target="_blank" class="citem">
+                <div class="citem-ico">💻</div>
+                <div>
+                  <div class="citem-main">https://github.com/bhawanisingh20</div>
+                 
+                </div>
+              </a>
+              <!-- <a
+                href="https://scholar.google.com"
+                target="_blank"
+                class="citem"
+              >
+                <div class="citem-ico">🔬</div>
+                <div>
+                  <div class="citem-main">Google Scholar Profile</div>
+                  <div class="citem-sub">
+                    24 PAPERS · H-INDEX: 9 · 480+ CITATIONS
+                  </div>
+                </div>
+              </a> -->
+              <a href="tel:+919876543210" class="citem">
+                <div class="citem-ico">📱</div>
+                <div>
+                  <div class="citem-main">+91 94606 33960</div>
+                  <div class="citem-sub">PHONE / WHATSAPP</div>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="contact-form reveal-right">
+            <div class="fgroup">
+              <label class="flabel">Your Name</label>
+              <input
+                class="finput"
+                type="text"
+                placeholder="Full Name / Designation"
+              />
+            </div>
+            <div class="fgroup">
+              <label class="flabel">Email Address</label>
+              <input class="finput" type="email" placeholder="your@email.com" />
+            </div>
+            <div class="fgroup">
+              <label class="flabel">Subject</label>
+              <input
+                class="finput"
+                type="text"
+                placeholder="Research Collab / Consulting / General"
+              />
+            </div>
+            <div class="fgroup">
+              <label class="flabel">Message</label>
+              <textarea
+                class="ftextarea"
+                placeholder="Tell me about the opportunity, project, or query..."
+              ></textarea>
+            </div>
+            <button
+              class="btn-gold"
+              style="cursor: none"
+              onclick="
+                alert(
+                  'Stay Tuned will update it soon. Meanwhile drop an email at :bhawanisingh20@yahoo.com'
+                )
+              "
+            >
+              SEND MESSAGE &nbsp;→
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BITS WATERMARK -->
+    <div class="bits-watermark">
+      <svg class="bits-wm-logo" viewBox="0 0 40 40" xmlns="">
+        <!-- Outer Circle -->
+        <circle cx="30" cy="30" r="21" fill="none" stroke-width="1.5" />
+
+        <!-- Curve -->
+        <path
+          d="M7 30 Q20 36 33 30"
+          fill="none"
+          stroke="#c8972a"
+          stroke-width=".8"
+        />
+      </svg>
+
+      <span class="bits-wm-text">BITS PILANI</span>
+    </div>
+
+    <footer>
+      <div class="footer-wrap">
+        <div class="footer-l">
+          © 2026 BHAWANI SINGH PANWAR · BITS PILANI · ALL RIGHTS RESERVED
+        </div>
+        <div class="footer-r">
+          CRAFTED WITH <span>♥</span> · BITS PILANI, RAJASTHAN
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      /* ── CURSOR ── */
+      const cur = document.getElementById("cur");
+      const ring = document.getElementById("cur-ring");
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        cur.style.cssText = `left:${mx - 5}px;top:${my - 5}px`;
+      });
+      (function animRing() {
+        rx += (mx - rx - 20) * 0.1;
+        ry += (my - ry - 20) * 0.1;
+        ring.style.cssText = `left:${rx}px;top:${ry}px`;
+        requestAnimationFrame(animRing);
+      })();
+      document
+        .querySelectorAll(
+          "a,button,.photo-inner,.skill-pill,.proj-card,.exp-card",
+        )
+        .forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            cur.style.transform = "scale(2.5)";
+            ring.style.transform = "scale(1.6)";
+            ring.style.borderColor = "rgba(200,151,42,.9)";
+          });
+          el.addEventListener("mouseleave", () => {
+            cur.style.transform = "scale(1)";
+            ring.style.transform = "scale(1)";
+            ring.style.borderColor = "rgba(200,151,42,.6)";
+          });
+        });
+
+      /* ── PROGRESS BAR ── */
+      const pb = document.getElementById("progress-bar");
+      window.addEventListener("scroll", () => {
+        const pct =
+          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+          100;
+        pb.style.width = pct + "%";
+      });
+
+      /* ── STARFIELD ── */
+      const cv = document.getElementById("starfield");
+      const cx = cv.getContext("2d");
+      function resize() {
+        cv.width = innerWidth;
+        cv.height = innerHeight;
+      }
+      resize();
+      window.addEventListener("resize", resize);
+      const STARS = Array.from({ length: 120 }, () => ({
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        r: Math.random() * 1.5 + 0.3,
+        o: Math.random() * 0.6 + 0.1,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: (Math.random() - 0.5) * 0.15,
+        pulse: Math.random() * Math.PI * 2,
+      }));
+      const NODES = Array.from({ length: 35 }, () => ({
+        x: Math.random() * innerWidth,
+        y: Math.random() * innerHeight,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+      }));
+      let frame = 0;
+      (function drawBG() {
+        cx.clearRect(0, 0, cv.width, cv.height);
+        frame++;
+        // stars
+        STARS.forEach((s) => {
+          s.x += s.vx;
+          s.y += s.vy;
+          s.pulse += 0.02;
+          if (s.x < 0) s.x = cv.width;
+          if (s.x > cv.width) s.x = 0;
+          if (s.y < 0) s.y = cv.height;
+          if (s.y > cv.height) s.y = 0;
+          const op = s.o * (0.6 + 0.4 * Math.sin(s.pulse));
+          cx.beginPath();
+          cx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+          cx.fillStyle = `rgba(200,151,42,${op})`;
+          cx.fill();
+        });
+        // node network
+        NODES.forEach((n) => {
+          n.x += n.vx;
+          n.y += n.vy;
+          if (n.x < 0 || n.x > cv.width) n.vx *= -1;
+          if (n.y < 0 || n.y > cv.height) n.vy *= -1;
+        });
+        NODES.forEach((a, i) => {
+          NODES.slice(i + 1).forEach((b) => {
+            const dx = a.x - b.x,
+              dy = a.y - b.y,
+              d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 150) {
+              cx.beginPath();
+              cx.moveTo(a.x, a.y);
+              cx.lineTo(b.x, b.y);
+              cx.strokeStyle = `rgba(200,151,42,${0.05 * (1 - d / 150)})`;
+              cx.lineWidth = 0.8;
+              cx.stroke();
+            }
+          });
+        });
+        requestAnimationFrame(drawBG);
+      })();
+
+      /* ── SCROLL REVEAL ── */
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      document
+        .querySelectorAll(".reveal,.reveal-left,.reveal-right,.reveal-scale")
+        .forEach((el) => io.observe(el));
+
+      /* ── COUNTER ANIMATION ── */
+      //   const counterObs = new IntersectionObserver(
+      //     (entries) => {
+      //       entries.forEach((e) => {
+      //         if (e.isIntersecting && !e.target.dataset.done) {
+      //           e.target.dataset.done = 1;
+      //           const target = +e.target.dataset.target;
+      //           let cur = 0;
+      //           const step = target / 60;
+      //           const t = setInterval(() => {
+      //             cur = Math.min(cur + step, target);
+      //             e.target.textContent =
+      //               cur.toFixed(2) + (target >= 9 ? "+" : ""); // keep 2 decimal places
+      //             if (cur >= target) clearInterval(t);
+      //           }, 20);
+      //         }
+      //       });
+      //     },
+      //     { threshold: 0.5 },
+      //   );
+      //   document
+      //     .querySelectorAll("[data-target]")
+      //     .forEach((el) => counterObs.observe(el));
+      const counterObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting && !e.target.dataset.done) {
+              e.target.dataset.done = "true";
+
+              const target = parseFloat(e.target.dataset.target);
+              let current = 0;
+
+              function updateCounter() {
+                current += (target - current) * 0.08;
+
+                if (Math.abs(target - current) < 0.01) {
+                  current = target;
+                }
+
+                let displayValue;
+
+                // ✅ If target has decimal → keep decimal
+                if (target % 1 !== 0) {
+                  displayValue = current.toFixed(1);
+                }
+                // ✅ else show integer
+                else {
+                  displayValue = Math.floor(current);
+                }
+
+                e.target.textContent = displayValue + "+";
+
+                if (current < target) {
+                  requestAnimationFrame(updateCounter);
+                }
+              }
+
+              updateCounter();
+            }
+          });
+        },
+        { threshold: 0.5 },
+      );
+
+      document.querySelectorAll("[data-target]").forEach((el) => {
+        counterObs.observe(el);
+      });
+
+      /* ── SKILL BARS ── */
+      const barObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.querySelectorAll(".sbar-fill").forEach((bar) => {
+                setTimeout(() => {
+                  bar.style.width = bar.dataset.w + "%";
+                }, 200);
+              });
+            }
+          });
+        },
+        { threshold: 0.3 },
+      );
+      document
+        .querySelectorAll(".skill-block")
+        .forEach((el) => barObs.observe(el));
+      /* ── PHOTO UPLOAD (PERSISTENT) ── */
+      const photoInput = document.getElementById("photo-input");
+      const photoPreview = document.getElementById("photo-preview");
+      const photoPlaceholder = document.getElementById("photo-placeholder");
+      const photoDrop = document.getElementById("photo-drop");
+
+      /* Load saved photo on page load */
+      window.addEventListener("DOMContentLoaded", () => {
+        const savedPhoto = localStorage.getItem("profilePhoto");
+        if (savedPhoto) {
+          photoPreview.src = savedPhoto;
+          photoPreview.style.display = "block";
+          photoPlaceholder.classList.add("hidden");
+        }
+      });
+
+      /* Show and save photo */
+      function showPhoto(file) {
+        if (!file || !file.type.startsWith("image/")) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          const base64 = e.target.result;
+
+          // show
+          photoPreview.src = base64;
+          photoPreview.style.display = "block";
+          photoPlaceholder.classList.add("hidden");
+
+          // save permanently
+          localStorage.setItem("profilePhoto", base64);
+        };
+
+        reader.readAsDataURL(file);
+      }
+
+      /* File select */
+      photoInput.addEventListener("change", (e) =>
+        showPhoto(e.target.files[0]),
+      );
+
+      /* Drag & drop */
+      photoDrop.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        photoDrop.style.borderColor = "var(--gold)";
+      });
+
+      photoDrop.addEventListener("dragleave", () => {
+        photoDrop.style.borderColor = "";
+      });
+
+      photoDrop.addEventListener("drop", (e) => {
+        e.preventDefault();
+        showPhoto(e.dataTransfer.files[0]);
+      });
+
+      /* OPTIONAL: Double click to remove photo */
+      photoPreview.addEventListener("dblclick", () => {
+        if (confirm("Remove photo?")) {
+          localStorage.removeItem("profilePhoto");
+          photoPreview.style.display = "none";
+          photoPlaceholder.classList.remove("hidden");
+        }
+      });
+      /* ── MAGNETIC BUTTONS ── */
+      document
+        .querySelectorAll(".btn-gold,.btn-outline,.nav-resume")
+        .forEach((btn) => {
+          btn.addEventListener("mousemove", (e) => {
+            const r = btn.getBoundingClientRect();
+            const dx = (e.clientX - r.left - r.width / 2) * 0.25;
+            const dy = (e.clientY - r.top - r.height / 2) * 0.25;
+            btn.style.transform = `translate(${dx}px,${dy}px)`;
+          });
+          btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "";
+          });
+        });
+
+      /* ── ACTIVE NAV ── */
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-links a");
+      window.addEventListener("scroll", () => {
+        let cur = "";
+        sections.forEach((s) => {
+          if (window.scrollY >= s.offsetTop - 200) cur = s.id;
+        });
+        navLinks.forEach((a) => {
+          a.style.color =
+            a.getAttribute("href") === "#" + cur ? "var(--gold2)" : "";
+        });
+      });
+
+      /* ── HERO GREETING ── */
+      const greet = document.getElementById("greeting");
+      const hour = new Date().getHours();
+      greet.textContent =
+        hour < 12
+          ? "Good Morning, I'm"
+          : hour < 17
+            ? "Good Afternoon, I'm"
+            : "Good Evening, I'm";
+    </script>
+  </body>
+</html>
