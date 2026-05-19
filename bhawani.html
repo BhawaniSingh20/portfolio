@@ -1254,13 +1254,13 @@
       }
 
       .cert-name a {
-  color: inherit;       /* Inherits the parent text color */
-  text-decoration: none; /* Removes underline */
-}
+        color: inherit; /* Inherits the parent text color */
+        text-decoration: none; /* Removes underline */
+      }
 
-.cert-name a:hover {
-  text-decoration: underline; /* Optional: show underline only on hover */
-}
+      .cert-name a:hover {
+        text-decoration: underline; /* Optional: show underline only on hover */
+      }
 
       .cert-by {
         font-family: "JetBrains Mono", monospace;
@@ -1516,7 +1516,7 @@
           grid-template-columns: 1fr;
         }
         .photo-zone {
-          display: none;
+          display: block;
         }
         .section-wrap {
           padding: 5rem 1.5rem;
@@ -1539,7 +1539,7 @@
         }
         .badge-left,
         .badge-right {
-          display: none;
+          display: block;
         }
       }
 
@@ -1737,7 +1737,11 @@
                 </div>
                 <div class="upload-btn">UPLOAD PHOTO</div>
               </div>
-              <img id="photo-preview" alt="Profile Photo" />
+              <img
+                id="photo-preview"
+                src="Self_Photo_Profile.jpeg"
+                alt="Profile Photo"
+              />
               <div class="photo-caption">
                 <div class="photo-caption-name">Bhawani Singh Panwar</div>
                 <div class="photo-caption-role">
@@ -1866,7 +1870,9 @@
               <div class="detail-icon">🌐</div>
               <div>
                 <div class="detail-label">BITS Profile</div>
-                <div class="detail-val">bits-pilani.ac.in/csis/rajesh</div>
+                <div class="detail-val">
+                  https://www.bits-pilani.ac.in/pilani/it-services-unit/it-services-unit-team/
+                </div>
               </div>
             </div>
           </div>
@@ -2378,15 +2384,41 @@
               Forti MemberShip Web Admin Portal — Spring Architect(MVC)
             </div>
             <div class="proj-desc">
-              We designed and developed Forti Membership program provides a web based solution 
-for each FORTI member to  facilitate them with mobile 
-accessibility feature to view and search the existing 
-member on their mobile screen while using app. 
-Technologies used to create this application is J2EE for 
-Admin Panel and Web Services along with android to 
-create mobile application. Forti is an android application 
-solution which is been developed to bring all its 
-members under a single mobile app
+              We designed and developed Forti Membership program provides a web
+              based solution for each FORTI member to facilitate them with
+              mobile accessibility feature to view and search the existing
+              member on their mobile screen while using app. Technologies used:
+              J2EE for Admin Panel and Web Services along with Android. Forti is
+              an android application solution developed to bring all its members
+              under a single mobile app.
+            </div>
+
+            <div class="proj-tags">
+              <span class="proj-tag">Java Spring MVC 3.0</span>
+              <span class="proj-tag">J2EE</span>
+              <span class="proj-tag">Hibernate</span>
+              <span class="proj-tag">MySQL</span>
+              <span class="proj-tag">Apache Tomcat</span>
+            </div>
+
+            <div class="proj-links">
+              <a href="#" class="plink">GitHub ↗</a>
+              <a href="#" class="plink">Demo ↗</a>
+            </div>
+          </div>
+          <div class="proj-number">06</div>
+          <div class="proj-title">
+            Forti MemberShip Web Admin Portal — Spring Architect(MVC)
+          </div>
+          <div class="proj-desc">
+            We designed and developed Forti Membership program provides a web
+            based solution for each FORTI member to facilitate them with mobile
+            accessibility feature to view and search the existing member on
+            their mobile screen while using app. Technologies used to create
+            this application is J2EE for Admin Panel and Web Services along with
+            android to create mobile application. Forti is an android
+            application solution which is been developed to bring all its
+            members under a single mobile app
             <div class="proj-tags">
               <span class="proj-tag">Java Spring MVC 3.0</span
               ><span class="proj-tag">J2EE</span
@@ -2421,20 +2453,25 @@ members under a single mobile app
           <div class="edu-card prime reveal delay-1">
             <div class="edu-year">2020 — 2022(Pass in 2024)</div>
             <div class="edu-degree">M.Tech (CSE)</div>
-            <div class="edu-inst">🏛️ Bikaner University Technology, Rajasthan</div>
+            <div class="edu-inst">
+              🏛️ Bikaner University Technology, Rajasthan
+            </div>
             <div class="edu-desc">
-              Thesis: "Kernel Based fuzzy k-means clustering segmentation and CNN Classification Based brain tumor detection."
+              Thesis: "Kernel Based fuzzy k-means clustering segmentation and
+              CNN Classification Based brain tumor detection."
             </div>
             <div class="edu-score">CGPA: 9.78/ 10</div>
           </div>
           <div class="edu-card reveal delay-2">
             <div class="edu-year">2015 — 2016</div>
-            <div class="edu-degree">PG Diploma in Advance Software Development & Methodologies — DASDM</div>
+            <div class="edu-degree">
+              PG Diploma in Advance Software Development & Methodologies — DASDM
+            </div>
             <div class="edu-inst">🏫 CDAC ACTS, Pune</div>
             <div class="edu-desc">
-              Specialization in Java, Spring MVC, Linux Adminstration & Web Technologies.
-              Designed and Developed the Task Management System with user AUthentication and Authorization.
-              
+              Specialization in Java, Spring MVC, Linux Adminstration & Web
+              Technologies. Designed and Developed the Task Management System
+              with user AUthentication and Authorization.
             </div>
             <div class="edu-score">CGPA: 8.24 / 10</div>
           </div>
@@ -2443,13 +2480,14 @@ members under a single mobile app
             <div class="edu-degree">
               B.Tech. — Computer Science &amp; Engineering
             </div>
-            <div class="edu-inst">
-              🏫 Rajasthan Technical Univeristy, Kota
-            </div>
+            <div class="edu-inst">🏫 Rajasthan Technical Univeristy, Kota</div>
             <div class="edu-desc">
               Foundation in algorithms, networks, and systems programming.
-              Internship at CoreInfo Com Pvt. Ltd., Jaipur and Indian Railway Networking System, Jaipur. Led the onsite zonal competition on Cyber Security and Ethical Hacking represented the
-              institute at Chakravyuh 2011 at Delhi Technological University conducted by IIT Kanpur.
+              Internship at CoreInfo Com Pvt. Ltd., Jaipur and Indian Railway
+              Networking System, Jaipur. Led the onsite zonal competition on
+              Cyber Security and Ethical Hacking represented the institute at
+              Chakravyuh 2011 at Delhi Technological University conducted by IIT
+              Kanpur.
             </div>
             <div class="edu-score">CGPA: 8.7 / 10</div>
           </div>
@@ -2463,13 +2501,18 @@ members under a single mobile app
             <div class="edu-year">AWARDS & RECOGNITION</div>
             <div class="edu-degree">Honors & Milestones</div>
             <div class="edu-desc" style="margin-top: 0.8rem">
-              🥇 &nbsp;Qualified for on site zoanl round of CHAKRAVYUH-IT Security EVENT at DTU, Delhi 2011<br />
-             🌍  &nbsp;Participated in DREGE N DROP robotics event at Techniche 2011 at IIT Guwahati<br />
-               🏆 &nbsp;3rd Rank of SOFTWAR event in techfest SARVATRA'11 held at <br />
-              
-             📰  &nbsp;Participated in Workshop on Network Security organised by Computer Society of India, Jaipur Chapter.<br/>
-             📖 &nbsp; Participated in practical traning in Automatic Electronic Exchange, Railnet, Passenger Reservaiton System and Optical Fibre Communication at NORTH WEST RAILWAY(NWR). 
+              🥇 &nbsp;Qualified for on site zoanl round of CHAKRAVYUH-IT
+              Security EVENT at DTU, Delhi 2011<br />
+              🌍 &nbsp;Participated in DREGE N DROP robotics event at Techniche
+              2011 at IIT Guwahati<br />
+              🏆 &nbsp;3rd Rank of SOFTWAR event in techfest SARVATRA'11 held at
+              <br />
 
+              📰 &nbsp;Participated in Workshop on Network Security organised by
+              Computer Society of India, Jaipur Chapter.<br />
+              📖 &nbsp; Participated in practical traning in Automatic
+              Electronic Exchange, Railnet, Passenger Reservaiton System and
+              Optical Fibre Communication at NORTH WEST RAILWAY(NWR).
             </div>
           </div>
         </div>
@@ -2493,14 +2536,17 @@ members under a single mobile app
         <div class="cert-masonry reveal">
           <div class="cert-card">
             <div class="cert-badge" style="background: rgba(255, 153, 0, 0.1)">
-             <img src="google.png" alt="Google Logo" width="40" height="40">
-
+              <img src="google.png" alt="Google Logo" width="40" height="40" />
             </div>
             <div class="cert-info">
               <div class="cert-name">
-                  <a href="https://www.credly.com/badges/17a5a980-a937-4968-a402-e82832fe0c14/linked_in_profile" target="_blank">
-
-Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge — Professional</a>
+                <a
+                  href="https://www.credly.com/badges/17a5a980-a937-4968-a402-e82832fe0c14/linked_in_profile"
+                  target="_blank"
+                >
+                  Mitigate Threats and Vulnerabilities with Security Command
+                  Center Skill Badge — Professional</a
+                >
               </div>
               <div class="cert-by">Google</div>
               <div class="cert-yr">Issued Feb 2026</div>
@@ -2508,12 +2554,20 @@ Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge �
           </div>
           <div class="cert-card">
             <div class="cert-badge" style="background: rgba(0, 114, 255, 0.1)">
-             <img src="google.png" alt="Google Logo" width="40" height="40">
+              <img src="google.png" alt="Google Logo" width="40" height="40" />
             </div>
             <div class="cert-info">
-              <div class="cert-name">  <a href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/20108558?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank">Google Cloud Gemini For Data Scientists And Analysts</a></div>
+              <div class="cert-name">
+                <a
+                  href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/20108558?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                  target="_blank"
+                  >Google Cloud Gemini For Data Scientists And Analysts</a
+                >
+              </div>
               <div class="cert-by">Google Cloud Training Online</div>
-              <div class="cert-yr">Issued Nov 2025 · Credential ID 20108558</div>
+              <div class="cert-yr">
+                Issued Nov 2025 · Credential ID 20108558
+              </div>
             </div>
           </div>
           <div class="cert-card">
@@ -2521,23 +2575,35 @@ Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge �
               class="cert-badge"
               style="background: rgba(200, 151, 42, 0.08)"
             >
-              <img src="google.png" alt="Google Logo" width="40" height="40">
+              <img src="google.png" alt="Google Logo" width="40" height="40" />
             </div>
             <div class="cert-info">
-              <div class="cert-name"> <a href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/20078727?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank">
-                Google Cloud Gemini For Application Developer</a>
+              <div class="cert-name">
+                <a
+                  href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/20078727?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                  target="_blank"
+                >
+                  Google Cloud Gemini For Application Developer</a
+                >
               </div>
               <div class="cert-by">Google</div>
-              <div class="cert-yr">Issued Nov 2025 · Credential ID 20078727</div>
+              <div class="cert-yr">
+                Issued Nov 2025 · Credential ID 20078727
+              </div>
             </div>
           </div>
           <div class="cert-card">
             <div class="cert-badge" style="background: rgba(123, 47, 255, 0.1)">
-          <img src="google.png" alt="Google Logo" width="40" height="40">
+              <img src="google.png" alt="Google Logo" width="40" height="40" />
             </div>
             <div class="cert-info">
-              <div class="cert-name"><a href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/15201468?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share" target="_blank">
-                Prompt Design in Vertex AI</a>
+              <div class="cert-name">
+                <a
+                  href="https://www.skills.google/public_profiles/a61f83a6-8f9c-4a09-add8-7545a92dcbc6/badges/15201468?utm_medium=social&utm_source=linkedin&utm_campaign=ql-social-share"
+                  target="_blank"
+                >
+                  Prompt Design in Vertex AI</a
+                >
               </div>
               <div class="cert-by">Linux Foundation / CNCF</div>
               <div class="cert-yr">Issued Apr 2025</div>
@@ -2545,20 +2611,37 @@ Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge �
           </div>
           <div class="cert-card">
             <div class="cert-badge" style="background: rgba(0, 200, 83, 0.1)">
-             <img src="google.png" alt="Google Logo" width="40" height="40">
+              <img src="google.png" alt="Google Logo" width="40" height="40" />
             </div>
             <div class="cert-info">
-              <div class="cert-name"><a href="https://www.credly.com/badges/21515f8c-46c6-4232-9be1-74fa79f8845e/linked_in_profile" target="_blank">Cloud Technical Series: ADK Builder's Badge</a></div>
+              <div class="cert-name">
+                <a
+                  href="https://www.credly.com/badges/21515f8c-46c6-4232-9be1-74fa79f8845e/linked_in_profile"
+                  target="_blank"
+                  >Cloud Technical Series: ADK Builder's Badge</a
+                >
+              </div>
               <div class="cert-by">Google Cloud Skills Boost</div>
               <div class="cert-yr">Issued Oct 2025</div>
             </div>
           </div>
           <div class="cert-card">
             <div class="cert-badge" style="background: rgba(255, 50, 50, 0.1)">
-             <img src="oracle_logo.jpg" alt="Google Logo" width="40" height="40">
+              <img
+                src="oracle_logo.jpg"
+                alt="Google Logo"
+                width="40"
+                height="40"
+              />
             </div>
             <div class="cert-info">
-              <div class="cert-name"><a href="https://www.credly.com/badges/21515f8c-46c6-4232-9be1-74fa79f8845e/linked_in_profile" target="_blank">Oracle cloud essentials</a></div>
+              <div class="cert-name">
+                <a
+                  href="https://www.credly.com/badges/21515f8c-46c6-4232-9be1-74fa79f8845e/linked_in_profile"
+                  target="_blank"
+                  >Oracle cloud essentials</a
+                >
+              </div>
               <div class="cert-by">Oracle</div>
               <div class="cert-yr">Issued Jan 2025</div>
             </div>
@@ -2609,11 +2692,16 @@ Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge �
                   <div class="citem-sub">LINKEDIN PROFILE</div>
                 </div>
               </a>
-              <a href="https://github.com/bhawanisingh20" target="_blank" class="citem">
+              <a
+                href="https://github.com/bhawanisingh20"
+                target="_blank"
+                class="citem"
+              >
                 <div class="citem-ico">💻</div>
                 <div>
-                  <div class="citem-main">https://github.com/bhawanisingh20</div>
-                 
+                  <div class="citem-main">
+                    https://github.com/bhawanisingh20
+                  </div>
                 </div>
               </a>
               <!-- <a
@@ -2671,7 +2759,7 @@ Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge �
               style="cursor: none"
               onclick="
                 alert(
-                  'Stay Tuned will update it soon. Meanwhile drop an email at :bhawanisingh20@yahoo.com'
+                  'Stay Tuned will update it soon. Meanwhile drop an email at :bhawanisingh20@yahoo.com',
                 )
               "
             >
@@ -2932,10 +3020,16 @@ Mitigate Threats and Vulnerabilities with Security Command Center Skill Badge �
       const photoDrop = document.getElementById("photo-drop");
 
       /* Load saved photo on page load */
+
       window.addEventListener("DOMContentLoaded", () => {
         const savedPhoto = localStorage.getItem("profilePhoto");
+
         if (savedPhoto) {
           photoPreview.src = savedPhoto;
+        }
+
+        // ✅ Always show default image if exists
+        if (photoPreview.src) {
           photoPreview.style.display = "block";
           photoPlaceholder.classList.add("hidden");
         }
